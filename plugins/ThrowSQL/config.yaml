@@ -1,0 +1,25 @@
+id:   ThrowSQL
+key:  throwsql
+name: ThrowSQL
+description: <__trans phrase="Throw a SQL query.">
+author_name: Alfasado Inc.
+author_link: http://alfasado.net/
+version: 0.1
+l10n_class: ThrowSQL::L10N
+config_settings:
+    AllowThrowSQL:
+        default: 0
+applications:
+    cms:
+        methods:
+            throw_sql: $throwsql::ThrowSQL::Plugin::_throw_sql
+        menus:
+            tools:throw_sql:
+                label: Throw SQL
+                mode: throw_sql
+                order: 7000
+                system_permission: administer
+                view:
+                    - system
+                condition: sub{ return MT->config( 'AllowThrowSQL' ) }
+
